@@ -85,12 +85,14 @@ Last updated: 2026-10-12 | Schema version: 1
 ---
 
 ## MILESTONE 4 — First Real Export
-| Item | Status |
-|---|---|
-| FFmpeg render graph | 🚫 |
-| MP4 export | 🚫 |
-| Progress reporting | 🚫 |
-| Cancellation | 🚫 |
+| Item | Status | Notes |
+|---|---|---|
+| MP4 clip export | ✅ | Real H.264 video (libx264) + AAC audio export via FFmpeg; verified in test suite |
+| Export dialog & UI | ✅ | ExportModal with format, resolution presets, command preview, and progress bar |
+| Progress reporting | ✅ | Real-time percentage tracking via FFmpeg out_time_us parser |
+| Cancellation | ✅ | AbortSignal integration to terminate encoding process |
+| FFmpeg command generation | ✅ | Safe argument vector (no shell injection), scale + pad aspect ratio filter |
+| Multi-track compositing graph | ⏳ | Planned for multi-layer compositing engine (Milestone 6) |
 
 ---
 

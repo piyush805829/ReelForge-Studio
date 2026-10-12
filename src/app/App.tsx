@@ -15,6 +15,7 @@ import {
 import UnsavedChangesModal from '../components/modals/UnsavedChangesModal';
 import RecoveryPromptModal from '../components/modals/RecoveryPromptModal';
 import MissingMediaModal from '../components/modals/MissingMediaModal';
+import ExportModal from '../components/modals/ExportModal';
 
 function isInputElement(target: EventTarget | null): boolean {
   if (!target || !(target instanceof HTMLElement)) return false;
@@ -48,6 +49,7 @@ export default function App() {
   const [recoverySnapshot, setRecoverySnapshot] = useState<RecoverySnapshot | null>(null);
 
   const [showMissingMediaModal, setShowMissingMediaModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
 
   // Check for crash recovery snapshot on initial startup
   useEffect(() => {
@@ -205,6 +207,11 @@ export default function App() {
           handleRequestNew();
           break;
 
+        case 'e':
+          e.preventDefault();
+          setShowExportModal(true);
+          break;
+
         case 'z':
           e.preventDefault();
           if (e.shiftKey) {
@@ -276,6 +283,7 @@ export default function App() {
           onSaveRequest: () => { void handleSave(); },
           onSaveAsRequest: () => { void handleSaveAs(); },
           onMissingMediaRequest: () => setShowMissingMediaModal(true),
+          onExportRequest: () => setShowExportModal(true),
         }}
       />
 
@@ -300,6 +308,12 @@ export default function App() {
       <MissingMediaModal
         isOpen={showMissingMediaModal}
         onClose={() => setShowMissingMediaModal(false)}
+      />
+
+      {/* Export Video Dialog */}
+      <ExportModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
       />
     </>
   );

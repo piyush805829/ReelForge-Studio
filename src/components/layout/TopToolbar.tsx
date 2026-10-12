@@ -41,6 +41,7 @@ export interface TopToolbarProps {
   onSaveRequest?: () => void;
   onSaveAsRequest?: () => void;
   onMissingMediaRequest?: () => void;
+  onExportRequest?: () => void;
 }
 
 export default function TopToolbar({
@@ -49,6 +50,7 @@ export default function TopToolbar({
   onSaveRequest,
   onSaveAsRequest,
   onMissingMediaRequest,
+  onExportRequest,
 }: TopToolbarProps) {
   const {
     project, flags, ui,
@@ -281,11 +283,12 @@ export default function TopToolbar({
       <button
         id="toolbar-export"
         className="btn-primary text-xs py-1 px-3 flex items-center gap-1.5"
+        onClick={onExportRequest}
         disabled={flags.isExporting}
-        title="Export (not yet implemented)"
+        title="Export Video (Ctrl+E)"
       >
         <Download size={12} />
-        Export
+        {flags.isExporting ? 'Exporting…' : 'Export'}
       </button>
     </header>
   );

@@ -15,7 +15,7 @@ pub mod media;
 pub mod process;
 pub mod security;
 
-use commands::media_commands;
+use commands::{media_commands, export_commands};
 
 /// Called by main.rs
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -36,6 +36,7 @@ pub fn run() {
             media_commands::probe_media_file,
             media_commands::generate_thumbnail,
             media_commands::get_ffmpeg_version,
+            export_commands::export_timeline_clip,
         ])
         .setup(|app| {
             tracing::info!("ReelForge Studio starting (schema v1)");
