@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --forge-bg-primary:   #0D0F14;
+    --forge-bg-secondary: #13161E;
+    --forge-bg-tertiary:  #1A1E2A;
+    --forge-bg-elevated:  #21273A;
+    --forge-bg-overlay:   #2A3048;
+    --forge-accent-violet:#7C3AED;
+    --forge-accent-teal:  #06B6D4;
+    --forge-accent-blue:  #3B82F6;
+    --forge-text-primary: #F1F5F9;
+    --forge-text-secondary:#94A3B8;
+    --forge-border:       #2D3550;
+  }
+
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+    background: var(--forge-bg-primary);
+    color: var(--forge-text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* ─── Drag cursor overrides ─── */
+  [data-dragging="true"] { cursor: grabbing !important; }
+}
+
+/* ─── Component Utilities ─────────────────────────────────────────────────── */
+@layer components {
+  /* Toolbar button */
+  .toolbar-btn {
+    @apply flex items-center gap-1.5 px-2.5 py-1.5 rounded text-forge-text-secondary
+           hover:text-forge-text-primary hover:bg-forge-bg-elevated
+           transition-colors duration-150 text-xs font-medium;
+  }
+  .toolbar-btn.active {
+    @apply text-forge-accent-violet bg-forge-bg-elevated;
+  }
+  .toolbar-btn:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  /* Panel */
+  .panel {
+    @apply bg-forge-bg-secondary border border-forge-border-default flex flex-col overflow-hidden;
+  }
+  .panel-header {
+    @apply flex items-center px-3 h-8 border-b border-forge-border-subtle
+           text-xs font-semibold text-forge-text-secondary tracking-wider uppercase;
+  }
+
+  /* Media thumbnail */
+  .media-thumb {
+    @apply rounded overflow-hidden bg-forge-bg-tertiary border border-forge-border-subtle
+           hover:border-forge-accent-violet transition-colors cursor-pointer;
+  }
+
+  /* Timeline clip */
+  .timeline-clip {
+    @apply absolute top-1 bottom-1 rounded overflow-hidden
+           border border-white/10 cursor-grab select-none;
+  }
+  .timeline-clip:hover {
+    @apply border-white/30;
+  }
+  .timeline-clip.selected {
+    @apply border-forge-accent-violet shadow-forge-sm;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-forge-gradient;
+  }
+
+  /* Input */
+  .forge-input {
+    @apply w-full bg-forge-bg-tertiary border border-forge-border-default rounded px-2.5 py-1.5
+           text-forge-text-primary text-xs outline-none
+           focus:border-forge-accent-violet focus:ring-1 focus:ring-forge-accent-violet/30
+           transition-colors placeholder:text-forge-text-muted;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-forge-gradient text-white px-4 py-2 rounded font-medium text-sm
+           hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-forge-bg-elevated border border-forge-border-default text-forge-text-primary
+           px-4 py-2 rounded font-medium text-sm hover:border-forge-accent-violet
+           transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply text-forge-text-secondary px-3 py-1.5 rounded text-sm
+           hover:text-forge-text-primary hover:bg-forge-bg-elevated
+           transition-colors;
+  }
+
+  /* Scrollable areas */
+  .forge-scroll {
+    @apply overflow-y-auto overflow-x-hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #2D3550 #13161E;
+  }
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.15s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.2s ease-out;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Timeline ruler tick marks */
+  .ruler-tick {
+    @apply absolute top-0 h-full border-l border-forge-border-subtle;
+  }
+  .ruler-tick-major {
+    @apply border-forge-border-default;
+  }
+
+  /* Glow effects */
+  .glow-violet {
+    box-shadow: 0 0 12px rgba(124, 58, 237, 0.5);
+  }
+  .glow-teal {
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.5);
+  }
+
+  /* Resize handle */
+  .resize-handle {
+    @apply absolute top-0 bottom-0 w-1.5 cursor-ew-resize
+           bg-transparent hover:bg-forge-accent-violet/40 transition-colors z-10;
+  }
+  .resize-handle-left  { @apply left-0; }
+  .resize-handle-right { @apply right-0; }
+}

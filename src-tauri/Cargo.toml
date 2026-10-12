@@ -1,0 +1,36 @@
+[package]
+name = "reelforge-studio"
+version = "0.1.0"
+description = "ReelForge Studio — Professional video editing for Windows"
+authors = ["ReelForge"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+# The `_lib` suffix may seem redundant but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This is because auto-targets are disabled below (cargo will not search the
+# temporary binary for a matching filename).
+name = "reelforge_studio_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-shell = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1.11", features = ["v4"] }
+tokio = { version = "1", features = ["full"] }
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[features]
+# This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]

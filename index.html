@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/reelforge-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ReelForge Studio — Professional video editing, motion graphics, and finishing for Windows" />
+    <title>ReelForge Studio</title>
+    <!-- Google Fonts: Inter + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      /* Prevent flash of unstyled content */
+      html, body {
+        background-color: #0D0F14;
+        color: #F1F5F9;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: #13161E; }
+      ::-webkit-scrollbar-thumb { background: #2D3550; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #7C3AED; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
